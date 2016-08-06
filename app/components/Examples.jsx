@@ -3,7 +3,7 @@ var React = require('react');
 var Examples = React.createClass({
   render : function () {
     return (
-        <h3>Some Examples stuff</h3>
+        <h3>Some Examples stuff git whoop!</h3>
     );
   }
 });
