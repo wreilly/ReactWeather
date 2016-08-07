@@ -6,8 +6,8 @@ const PORT = process.env.PORT || 3000;
 
 app.use(function (req, res, next){
 	console.log("WR__ 0000 BEFORE IF : req.protocol : "  + req.protocol);
-   if (req.protocol                     === 'https') {
-// if (req.headers['x-forwarded-proto'] === 'https') { // WORKED
+//  if (req.protocol                     === 'https') { // DOES NOT (reliably ??) WORK
+    if (req.headers['x-forwarded-proto'] === 'https') { // WORKED
 
 // WR__
 console.log("WR__ 00 HTTP *S* IF : req.protocol : "  + req.protocol);
