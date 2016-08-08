@@ -13,6 +13,13 @@ var Weather  = require('Weather');
 var About    = require('About');
 var Examples = require('Examples');
 
+// Load foundation
+// You need the css loader: 'css!'
+// Also the style loader to make styles "show up":  'style!'
+require('style!css!foundation-sites/dist/foundation.min.css');
+// Start up foundation:
+$(document).foundation();
+
 ReactDOM.render(
   <div>
     <Router history={hashHistory}>

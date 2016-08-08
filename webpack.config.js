@@ -1,7 +1,28 @@
-// /webpack.config.js (in root)
+// This file: /webpack.config.js (in root)
+
+var webpack = require('webpack');
+
 module.exports = {
 //  entry : './public/app.js',
-  entry : './app/app.jsx', // need babel-loader!
+// script! invokes "script loader", for webpack purposes
+  entry : [
+    'script!jquery/dist/jquery.min.js',
+    'script!foundation-sites/dist/foundation.min.js',
+    './app/app.jsx'
+ ], // need babel-loader!
+ // lets Foundation attach to the jQuery object ...
+ externals : {
+   jquery : 'jQuery'
+ },
+ // Tell webpack to watch for var names (on left)
+ // and to automatically swap in (provide) the plugin (on right)
+ // Essentially, this obviates need to require jQuery everywhere...
+ plugins: [
+   new webpack.ProvidePlugin({
+     '$': 'jquery',
+     'jQuery' : 'jquery'
+   })
+ ],
   output : {
     path : __dirname, // current directory (root)
     filename : './public/bundle.js'
