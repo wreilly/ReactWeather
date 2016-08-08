@@ -1,8 +1,12 @@
 var React = require('react');
 
-// Yes, works.
 var About = (props) => {
-      return <h3>About component</h3>;
+      return (
+        <div>
+          <h3>About</h3>
+          <p>First paragraph about our site...</p>
+        </div>
+      );
 };
 
 module.exports = About;

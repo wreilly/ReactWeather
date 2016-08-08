@@ -9,6 +9,19 @@ app.use(function (req, res, next){
 //  if (req.protocol                     === 'https') { // DOES NOT (reliably ??) WORK
     if (req.headers['x-forwarded-proto'] === 'https') { // WORKED
 
+			/*
+			https://dashboard.heroku.com/apps/serene-reef-47645/logs
+
+			req.protocol thinks it is http
+			req.headers['x-forwarded-proto'] knows that it is https
+
+			2016-08-07T19:01:50.857115+00:00 heroku[router]: at=info method=GET path="/" host=serene-reef-47645.herokuapp.com request_id=0027fc8a-a5d6-4aff-8c6a-3b91a24dccac fwd="24.60.203.45" dyno=web.1 connect=1ms service=17ms status=302 bytes=349
+			2016-08-07T19:01:50.843173+00:00 app[web.1]: WR__ 0000 BEFORE IF : req.protocol : http
+			2016-08-07T19:01:50.843615+00:00 app[web.1]: WR__ 00 HTTP *S* IF : req.protocol : http
+			2016-08-07T19:01:50.843663+00:00 app[web.1]: WR__ 01 HTTP *S* IF : req.headers['x-forwarded-proto']https
+
+			*/
+
 // WR__
 console.log("WR__ 00 HTTP *S* IF : req.protocol : "  + req.protocol);
 console.log("WR__ 01 HTTP *S* IF : req.headers['x-forwarded-proto']"  + req.headers['x-forwarded-proto']);
