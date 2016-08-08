@@ -52,16 +52,19 @@ var app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(function (req, res, next){
-	console.log("WR__ 0000 BEFORE IF : req.protocol : "  + req.protocol);
+	console.log("WR__ 0000A BEFORE IF : req.protocol : "  + req.protocol);
+
+	console.log("WR__ 0000B BEFORE IF : req.headers['x-forwarded-proto']"  + req.headers['x-forwarded-proto']);
+
 
 /* ****** LILINSPECTOR TIME !!! **** */
-console.log('****** LILINSPECTOR TIME !!! ****');
-lilInspector(req.headers);
-console.log('****** /LILINSPECTOR TIME !!! ****');
+// console.log('****** LILINSPECTOR TIME !!! ****');
+// lilInspector(req.headers);
+// console.log('****** /LILINSPECTOR TIME !!! ****');
 
 
-//  if (req.protocol                     === 'https') { // DOES NOT (reliably ??) WORK
-    if (req.headers['x-forwarded-proto'] === 'https') { // WORKED
+ if (req.protocol                     === 'https') { // DOES NOT (reliably ??) WORK
+    // if (req.headers['x-forwarded-proto'] === 'https') { // WORKED
 
 			/*
 			https://dashboard.heroku.com/apps/serene-reef-47645/logs
