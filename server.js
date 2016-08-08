@@ -1,11 +1,65 @@
 var express = require('express');
 
+// var lilInspector = require('lilInspector');
+function lilInspector(yourObject, yourObjectVariableName_kids) {
+// exports.lilInspector = function (yourObject, yourObjectVariableName_kids) {
+    var lilKey; // we won't even initiate. what Type is a key, anyway? String? Hmm
+    var lilObject = yourObject; // pros? cons? of doing this?
+    console.log("!!!! lilInspector !!!!");
+    // Hmm. would like to print the variable name to console. Possible?
+    // Google: JavaScript can I get variable name of an object?
+    // Hmm, looking like this is (ahem), "NOT DONE." S'allright.
+    console.log("yourObject = lilObject = " + lilObject);
+    // FAIL		console.log("fieldsToBeUpdated = NAME = " + fieldsToBeUpdated.constructor.name); // (empty. nothing.)
+    // FAIL         console.log("yourObject = NAME = " + yourObject.constructor.name.name); // [object Object]
+    // FAIL         console.log("yourObject = NAME = " + yourObject.constructor.name.name); // undefined
+    // FAIL          console.log("lilObject = NAME = " + lilObject.constructor.name); // [object Object]
+
+    /* ********* AWRIGHT. All that 'name' crap above FAILED.
+       Now we're just PASSING THE DAMNED THING IN.
+       yourObjectVariableName_kids
+
+    */
+    if (yourObjectVariableName_kids) { // If we passed it in...
+	var objectVariableNameThisTime = yourObjectVariableName_kids;
+	console.log("!!!!****!!!!");
+	console.log("objectVariableNameThisTime : " + objectVariableNameThisTime); }
+    else {
+	console.log("You forgot to pass in the yourObjectVariableName_kids, kid. No big deal.");
+    }
+    for (lilKey in lilObject){
+	if(lilObject.hasOwnProperty(lilKey)) {
+	    console.log("!!!! lilInspector !!!!");
+	    console.log("KEY : lilKey : " + lilKey);
+	    console.log("VALUE : lilObject[lilKey] : " + lilObject[lilKey]);
+	} else {
+	    // do nuttin'
+	}
+    }
+}
+
+
+
+
+
+
+
+
+
+
 // Create our app ANDREW_MEAD_CODE
 var app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(function (req, res, next){
 	console.log("WR__ 0000 BEFORE IF : req.protocol : "  + req.protocol);
+
+/* ****** LILINSPECTOR TIME !!! **** */
+console.log('****** LILINSPECTOR TIME !!! ****');
+lilInspector(req.headers);
+console.log('****** /LILINSPECTOR TIME !!! ****');
+
+
 //  if (req.protocol                     === 'https') { // DOES NOT (reliably ??) WORK
     if (req.headers['x-forwarded-proto'] === 'https') { // WORKED
 
