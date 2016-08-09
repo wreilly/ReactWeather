@@ -57,7 +57,7 @@ var Weather = React.createClass({
 
     return (
       <div>
-        <h3>Weather component li'l header a. Dumb, all this red in the Atom editor for that single li'l apostrophe: little 2.</h3>
+        <h3>Weather</h3>
         <WeatherForm onSearch={this.handleSearch}/>
         {renderMessage()}
       </div>

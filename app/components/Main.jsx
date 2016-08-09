@@ -7,8 +7,14 @@ var Main = (props) => {
     return (
       <div>
         <Nav></Nav>
-        <h2>Main Component header...abcd stateless function</h2>
-          {props.children}
+        <div className="row">
+{/*          // medium  1/2 ?; large 33%; no small means default 12
+          // centers on every width
+*/}
+          <div className="columns medium-6 large-4 small-centered">
+            {props.children}
+          </div>
+        </div>
       </div>
     )
 }
