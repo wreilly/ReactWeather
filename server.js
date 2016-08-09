@@ -63,8 +63,8 @@ app.use(function (req, res, next){
 // console.log('****** /LILINSPECTOR TIME !!! ****');
 
 
- if (req.protocol                     === 'https') { // DOES NOT (reliably ??) WORK
-    // if (req.headers['x-forwarded-proto'] === 'https') { // WORKED
+ // if (req.protocol                     === 'https') { // DOES NOT (reliably ??) WORK
+    if (req.headers['x-forwarded-proto'] === 'https') { // WORKED
 
 			/*
 			https://dashboard.heroku.com/apps/serene-reef-47645/logs
