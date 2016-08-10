@@ -1,13 +1,27 @@
 var React = require('react');
+var {Link} = require('react-router');
 
 var About = (props) => {
       return (
         <div>
           <h3>About</h3>
-          <p>First paragraph about our site...</p>
+          {/* http://foundation.zurb.com/sites/docs/typography-helpers.html */}
+          <p className="text-right">This is a development site.</p>
+          <p>You can get the <Link to="/?location=Philadelphia">temperature in Philadelphia</Link> if you click here.</p>
         </div>
       );
 };
+
+// *** STATELESS FUNCTIONAL COMPONENT
+// var About = (props) => {
+//       return (
+//         <div>
+//           <h3>About</h3>
+//           <p>First paragraph about our site...</p>
+//         </div>
+//       );
+// };
+
 
 module.exports = About;
 
