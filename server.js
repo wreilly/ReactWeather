@@ -51,27 +51,30 @@ function lilInspector(yourObject, yourObjectVariableName_kids) {
 var app = express();
 const PORT = process.env.PORT || 3000;
 
+// http://expressjs.com/en/guide/behind-proxies.html
 app.set('trust proxy', true);
 
-/*
-In addition to logging
-req.protocol
-and
-req.headers['x-forwarded-proto']
-
-ADD'L. logging:
-*/
-
-console.log("PROXY TESTING 01: req.connection.remoteAddress: ", req.connection.remoteAddress);
-
-console.log("PROXY TESTING 02: req.hostname: ", req.hostname);
-
-console.log("PROXY TESTING 03: req.ip: ", req.ip);
-
-console.log("PROXY TESTING 04: req.ips: ", req.ips);
 
 
 app.use(function (req, res, next){
+
+  /*
+  In addition to logging
+  req.protocol
+  and
+  req.headers['x-forwarded-proto']
+  ADD'L. logging:
+  */
+// ***************************
+  console.log("PROXY TESTING 01: req.connection.remoteAddress: ", req.connection.remoteAddress);
+
+  console.log("PROXY TESTING 02: req.hostname: ", req.hostname);
+
+  console.log("PROXY TESTING 03: req.ip: ", req.ip);
+
+  console.log("PROXY TESTING 04: req.ips: ", req.ips);
+// ***************************
+
 	console.log("WR__ 0000A BEFORE IF : req.protocol : "  + req.protocol);
 
 	console.log("WR__ 0000B BEFORE IF : req.headers['x-forwarded-proto']"  + req.headers['x-forwarded-proto']);
