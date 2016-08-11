@@ -13,7 +13,7 @@ var WeatherMessage = ({temp, location}) => {
 
   return (
     <div>
-      <h3>Temp today? Whoa. refactored</h3>
+      <h3 className="text-center">Temp today? Whoa. refactored</h3>
       <ul>
    <li>Where: {location}</li>
    <li>How Muchies: {temp}</li> {/* */}
