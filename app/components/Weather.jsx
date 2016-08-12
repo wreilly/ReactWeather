@@ -1,6 +1,7 @@
 var React = require('react');
 var WeatherForm = require('WeatherForm');
 var WeatherMessage = require('WeatherMessage');
+var ErrorModal = require('ErrorModal');
 var openWeatherMap = require('openWeatherMap');
 
 var Weather = React.createClass({
@@ -21,30 +22,39 @@ var Weather = React.createClass({
     // Hmm, is this too soon? Tink so.
 
     var thatWR__ = this;
-  //  debugger; //woot
 
-    this.setState({ isLoading: true });
+// hmm shouldn't that be thatWR__.setState ?? ??
+// Nope - instructor code has it as this.setState
+// I guess the "this onto that" bit is for inside nested functions...
+// callbacky - promisey stuff
+    this.setState({
+      isLoading: true,
+      errorMessage : undefined
+     });
 
     openWeatherMap.getTemp(location).then(function (temp) {
       thatWR__.setState({
         location: location,
         temp: temp
       });
-      thatWR__.setState({ isLoading: false });
-    }, function (errorMessage) {
+      thatWR__.setState({ isLoading: false }); // can be in same setState above, ya know!
+    }, function (wr__errorMessage) {
+      console.log("WR__ @@@ wr__errorMessage.message: ", wr__errorMessage.message); // "Error: Not found city(...)"
       thatWR__.setState({
+        // should these 2 still be emptied out here ? They're not in instructor code
         location: '',
         temp: '',
         isLoading : false,
+        errorMessage : wr__errorMessage.message,
       });
-      alert(errorMessage);
-    })
+      // alert(errorMessage); // We're using Modal now
+    });
 
 
     console.log("WR__ WeatherJSX apres setState this.state.location is : ", this.state.location);
   },
   render : function () {
-    var {isLoading, location, temp} = this.state;
+    var {isLoading, errorMessage, location, temp} = this.state;
 
     function renderMessage () {
       if (isLoading) {
@@ -55,11 +65,21 @@ var Weather = React.createClass({
       }
     }
 
+    function renderError () {
+      if (typeof errorMessage === 'string') {
+        console.log("WR__ @@@ typeof errorMessage === 'string': ", typeof errorMessage); //
+        return (
+          <ErrorModal message={errorMessage} / >
+        )
+      }
+    }
+
     return (
       <div>
         <h1 className="text-center">Get Weather</h1>
         <WeatherForm onSearch={this.handleSearch}/>
         {renderMessage()}
+        {renderError()}
       </div>
     );
   }
