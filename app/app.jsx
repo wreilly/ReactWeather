@@ -15,10 +15,15 @@ var Examples = require('Examples');
 
 // Load foundation
 // You need the css loader: 'css!'
-// Also the style loader to make styles "show up":  'style!'
+// Also the style loader to make styles "show up" in the HTML:  'style!'
 require('style!css!foundation-sites/dist/foundation.min.css');
 // Start up foundation:
 $(document).foundation();
+
+// App css
+// uses an alias, in webpack.config.js
+require('style!css!applicationStyles');
+
 
 ReactDOM.render(
   <div>

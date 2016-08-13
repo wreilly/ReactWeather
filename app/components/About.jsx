@@ -4,7 +4,7 @@ var {Link} = require('react-router');
 var About = (props) => {
       return (
         <div>
-          <h3>About</h3>
+          <h3 className="text-center page-title">About</h3>
           {/* http://foundation.zurb.com/sites/docs/typography-helpers.html */}
           <p className="text-right">This is a development site.</p>
           <p>You can get the <Link to="/?location=Philadelphia">temperature in Philadelphia</Link> if you click here.</p>
