@@ -29,7 +29,9 @@ var Weather = React.createClass({
 // callbacky - promisey stuff
     this.setState({
       isLoading: true,
-      errorMessage : undefined
+      errorMessage : undefined,
+      location: undefined, // clear out these values too
+      temp: undefined,
      });
 
     openWeatherMap.getTemp(location).then(function (temp) {
@@ -52,6 +54,24 @@ var Weather = React.createClass({
 
 
     console.log("WR__ WeatherJSX apres setState this.state.location is : ", this.state.location);
+  },
+
+  componentDidMount: function () {
+    var location = this.props.location.query.location; // location in URL ;
+    if (location && location.length > 0 ) {
+      this.handleSearch(location);
+      window.location.hash = '#/'; // clean up URL after search
+    }
+  },
+  // same code from componentDidMount here in componentWillReceiveProps
+  // Props don't change in a component, BUT, the parent
+  // CAN change the props on child. Hmm.
+  componentWillReceiveProps: function (newProps) {
+    var location = newProps.location.query.location; // location in URL ;
+    if (location && location.length > 0 ) {
+      this.handleSearch(location);
+      window.location.hash = '#/'; // clean up URL after
+    }
   },
   render : function () {
     var {isLoading, errorMessage, location, temp} = this.state;
