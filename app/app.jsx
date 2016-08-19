@@ -22,7 +22,8 @@ $(document).foundation();
 
 // App css
 // uses an alias, in webpack.config.js
-require('style!css!applicationStyles');
+// NEW: the SASS loader
+require('style!css!sass!applicationStyles');
 
 
 ReactDOM.render(
